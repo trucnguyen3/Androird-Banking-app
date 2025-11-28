@@ -1,6 +1,7 @@
 package aka.digital.banking_v2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +9,46 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+
+import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
     Switch switchDark;
-
     TextView userName, emailAddress;
+    String LOG_TAG = "Android-Banking-app";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Map<String, Object> eventValues = new HashMap<String, Object>();
+        eventValues.put("Screen Name", "Profile Screen");
+        eventValues.put("Deep Link", "aka://banking/profile");
+        eventValues.put("Screen ID", "6");
+
+        AppsFlyerLib.getInstance().logEvent(requireContext(),
+                "af_profile_screen",
+                eventValues,
+                new AppsFlyerRequestListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(LOG_TAG, "Event sent successfully");
+                    }
+                    @Override
+                    public void onError(int i, @NonNull String s) {
+                        Log.d(LOG_TAG, "Event failed to be sent:\n" +
+                                "Error code: " + i + "\n"
+                                + "Error description: " + s);
+                    }
+                });
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
