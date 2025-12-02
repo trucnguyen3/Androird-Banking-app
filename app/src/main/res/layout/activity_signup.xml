@@ -70,6 +70,22 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tvSub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4A90E2"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tvSub3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4A90E2"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
         <!-- Signup Button -->
         <Button
             android:id="@+id/btnSignup"

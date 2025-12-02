@@ -3,7 +3,6 @@ package aka.digital.banking_v2;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomeActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
-
     String username, emailaddress;
 
     @Override
@@ -24,12 +22,17 @@ public class HomeActivity extends AppCompatActivity {
         username = getIntent().getStringExtra("USERNAME");
         emailaddress = getIntent().getStringExtra("EMAILADDRESS");
 
-        // Initialize BottomNavigationView
         bottomNav = findViewById(R.id.bottomNav);
 
-        loadFragment(new HomeFragment(), username, emailaddress);
+        // Determine which fragment to open
+        String fragmentToOpen = getIntent().getStringExtra("fragment_to_open");
+        if (fragmentToOpen == null && getIntent().getData() != null) {
+            fragmentToOpen = getIntent().getData().getPath().replace("/", "");
+        }
 
-        // Set listener
+        openFragmentByName(fragmentToOpen != null ? fragmentToOpen : "home");
+
+        // Bottom navigation listener
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selected = null;
             int id = item.getItemId();
@@ -40,15 +43,25 @@ public class HomeActivity extends AppCompatActivity {
             else if (id == R.id.nav_profile) selected = new ProfileFragment();
 
             if (selected != null) {
-                loadFragment(selected, username, emailaddress);
+                loadFragment(selected);
             }
             return true;
         });
-
-        handleDeepLink();
     }
 
-    private void loadFragment(Fragment fragment, String username, String emailaddress) {
+    private void openFragmentByName(String name) {
+        switch (name) {
+            case "notifications":
+                loadFragment(new NotificationFragment());
+                break;
+            case "home":
+            default:
+                loadFragment(new HomeFragment());
+                break;
+        }
+    }
+
+    private void loadFragment(Fragment fragment) {
         Bundle bundle = new Bundle();
         bundle.putString("USERNAME", username);
         bundle.putString("EMAILADDRESS", emailaddress);
@@ -58,12 +71,5 @@ public class HomeActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.homeFragmentContainer, fragment)
                 .commit();
-    }
-
-    private void handleDeepLink() {
-        Uri data = getIntent().getData();
-        if (data != null) {
-            Log.d("DEEPLINK", "Opened Home screen with: " + data.toString());
-        }
     }
 }

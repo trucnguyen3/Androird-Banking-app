@@ -36,6 +36,15 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup = findViewById(R.id.btnSignup);
         btnGoLogin = findViewById(R.id.btnGoLogin);
 
+        TextView tvSub2 = findViewById(R.id.tvSub2);
+        TextView tvSub3 = findViewById(R.id.tvSub3);
+
+        String sub2 = getIntent().getStringExtra("deep_link_sub2");
+        String sub3 = getIntent().getStringExtra("deep_link_sub3");
+
+        if (sub2 != null) tvSub2.setText("Referrer Name: " + sub2);
+        if (sub3 != null) tvSub3.setText("Referrer ID: " + sub3);
+
         btnSignup.setOnClickListener(v -> {
             String username = edtUserName.getText().toString().trim();
             String emailaddress = edtEmail.getText().toString().trim();

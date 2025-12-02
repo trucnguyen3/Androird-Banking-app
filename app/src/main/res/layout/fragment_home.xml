@@ -255,6 +255,37 @@
 
             </GridLayout>
 
+            <TextView
+                android:text="Invite Friends"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"/>
+
+            <Button
+                android:id="@+id/btnInvite"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_primary"
+                android:text="Generate Invite link"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/inviteDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Invite link will appear here"
+                android:textSize="16sp"
+                android:drawablePadding="8dp"
+                android:drawableEnd="@drawable/ic_copy"
+                android:gravity="center_vertical"/>
+
             <!-- News Carousel -->
             <TextView
                 android:text="Latest News"

@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-    <meta-data android:name="com.appsflyer.FacebookApplicationId" android:value="@string/facebook_application_id" />
+
+    <meta-data
+        android:name="com.appsflyer.FacebookApplicationId"
+        android:value="@string/facebook_application_id" />
 
     <application
         android:allowBackup="true"
@@ -17,62 +20,60 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banking_v2"
         tools:replace="android:dataExtractionRules,android:fullBackupContent">
-        <activity
-            android:name=".HomeActivity"
-            android:exported="true">
+        <activity android:name=".HomeActivity" android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="banking"
-                    android:path="/home"
-                    android:scheme="aka" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="aka" android:host="banking" android:path="/home"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="aka" android:host="banking" android:path="/notifications"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
+                    android:scheme="aka"
                     android:host="banking"
-                    android:path="/signup"
-                    android:scheme="aka" />
+                    android:path="/signup" />
             </intent-filter>
-        </activity> <!-- LOGIN -->
+        </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
                 <data
+                    android:scheme="aka"
                     android:host="banking"
-                    android:path="/login"
-                    android:scheme="aka" />
+                    android:path="/login" />
             </intent-filter>
         </activity>
         <service
-            android:exported="true"
-            android:name="com.appsflyer.FirebaseMessagingServiceListener">
+            android:name="com.appsflyer.FirebaseMessagingServiceListener"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
     </application>
 
 </manifest>
