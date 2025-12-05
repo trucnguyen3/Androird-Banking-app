@@ -108,11 +108,8 @@ public class HomeFragment extends Fragment {
         });
 
         generateLink.setOnClickListener(v -> {
-            String oneLinkId = "vlMm";
-
             LinkGenerator linkGenerator = ShareInviteHelper.generateInviteUrl(requireContext());
             linkGenerator.setBrandDomain("uat.akadigital.net");
-            linkGenerator.setBaseURL(oneLinkId, "uat.akadigital.net", null);
             linkGenerator.addParameter("deep_link_value", "signup");
             linkGenerator.addParameter("deep_link_sub2", finalUsername);
             linkGenerator.addParameter("deep_link_sub3", "HHKK0013");

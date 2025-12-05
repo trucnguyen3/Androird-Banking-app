@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         String afDevKey = "cYmtVpJCBSET23rRv4GWXa";
         AppsFlyerLib appsflyer = AppsFlyerLib.getInstance();
         appsflyer.setDebugLog(true);
+        AppsFlyerLib.getInstance().setAppInviteOneLink("vlMm");
 
         appsflyer.subscribeForDeepLink(new DeepLinkListener(){
             @Override
